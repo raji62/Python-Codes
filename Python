@@ -1,0 +1,58 @@
+1.
+def max_revenue(N, K, sales):
+    # Initialize the maximum revenue
+    max_rev = 0
+    
+    # Compute the sum of the first K days
+    current_sum = sum(sales[:K])
+    max_rev = current_sum
+    
+    # Slide the window over the rest of the days
+    for i in range(K, N):
+        # Update the sum by subtracting the element that is left out of the window
+        # and adding the new element in the window
+        current_sum += sales[i] - sales[i - K]
+        # Update the maximum revenue
+        max_rev = max(max_rev, current_sum)
+    
+    return max_rev
+
+# Read input
+N, K = map(int, input().strip().split())
+sales = list(map(int, input().strip().split()))
+
+# Calculate and print the maximum revenue
+print(max_revenue(N, K, sales))
+
+
+2.
+def BracketCombinations(num):
+    # Function to compute the nth Catalan number
+    def catalan_number(n):
+        if n == 0 or n == 1:
+            return 1
+        # Catalan number using dynamic programming
+        catalan = [0] * (n + 1)
+        catalan[0] = 1
+        catalan[1] = 1
+        
+        for i in range(2, n + 1):
+            for j in range(i):
+                catalan[i] += catalan[j] * catalan[i - 1 - j]
+        
+        return catalan[n]
+    
+    # Return the number of valid combinations
+    return catalan_number(num)
+
+# Read input
+num = int(input().strip())
+
+# Calculate and print the number of valid combinations
+print(BracketCombinations(num))
+
+
+
+
+
+2.
